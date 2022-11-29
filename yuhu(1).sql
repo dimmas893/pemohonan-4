@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 28 Nov 2022 pada 07.24
+-- Waktu pembuatan: 29 Nov 2022 pada 11.24
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.4.4
 
@@ -47,6 +47,7 @@ CREATE TABLE `layanan` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `id_layanan` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `nama_layanan` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `testing` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `info_layanan` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -56,18 +57,18 @@ CREATE TABLE `layanan` (
 -- Dumping data untuk tabel `layanan`
 --
 
-INSERT INTO `layanan` (`id`, `id_layanan`, `nama_layanan`, `info_layanan`, `created_at`, `updated_at`) VALUES
-(2, '1234', 'Pelantikan PPAT', 'layanan ini untuk membuat rumah kalangan bawah', '2022-11-23 21:40:13', '2022-11-23 23:49:16'),
-(3, '123', 'Ganti Nama', 'layanan ini untuk kalangan bawah', '2022-11-23 22:21:12', '2022-11-23 23:48:54'),
-(4, '1', 'Pelepasan Sebagian Hak', 'layanan ini untuk kalangan bawah', '2022-11-23 23:49:42', '2022-11-23 23:49:42'),
-(5, '1', 'Pemecahan Bidang', 'layanan ini untuk kalangan bawah', '2022-11-23 23:50:00', '2022-11-23 23:50:00'),
-(6, '1', 'Pemisahan Bidang', 'layanan ini untuk kalangan bawah', '2022-11-23 23:50:21', '2022-11-23 23:50:21'),
-(7, '1', 'Pencatatan/Pelunasan BPHTB/PPH', 'layanan ini untuk kalangan bawah', '2022-11-23 23:51:19', '2022-11-23 23:51:19'),
-(8, '1', 'Pengangkatan Sita', 'layanan ini untuk kalangan bawah', '2022-11-23 23:51:43', '2022-11-23 23:51:43'),
-(9, '2', 'Penggabungan Bidang', 'layanan ini untuk kalangan bawah', '2022-11-23 23:52:05', '2022-11-23 23:52:05'),
-(10, '1', 'Peningkatan Kualitas PPAT sementara', 'layanan ini untuk kalangan bawah', '2022-11-23 23:52:41', '2022-11-23 23:52:41'),
-(11, '2', 'Peralihan Pihak - Hibah', 'layanan ini untuk kalangan bawah', '2022-11-23 23:53:09', '2022-11-23 23:53:09'),
-(12, 'das', 'PERALIHAN HAK - PEMASUKAN KE DALAM PERUSAHAAN ( BPNRI.ii.1 )', '-dapat diakses online oleh PPTA : Ya\r\n-dapat diakses online oleh Masyarakat : Tidak\r\n-dapat diakses online oleh Penilai Tanah : Tidak\r\n-dapat diakses online oleh Suerveyor : Tidak', '2022-11-25 00:19:06', '2022-11-25 00:22:20');
+INSERT INTO `layanan` (`id`, `id_layanan`, `nama_layanan`, `testing`, `info_layanan`, `created_at`, `updated_at`) VALUES
+(2, '1234', 'Pelantikan PPAT', 'p', 'layanan ini untuk membuat rumah kalangan bawah', '2022-11-23 21:40:13', '2022-11-23 23:49:16'),
+(3, '123', 'Ganti Nama', NULL, 'layanan ini untuk kalangan bawah', '2022-11-23 22:21:12', '2022-11-23 23:48:54'),
+(4, '1', 'Pelepasan Sebagian Hak', NULL, 'layanan ini untuk kalangan bawah', '2022-11-23 23:49:42', '2022-11-23 23:49:42'),
+(5, '1', 'Pemecahan Bidang', NULL, 'layanan ini untuk kalangan bawah', '2022-11-23 23:50:00', '2022-11-23 23:50:00'),
+(6, '1', 'Pemisahan Bidang', NULL, 'layanan ini untuk kalangan bawah', '2022-11-23 23:50:21', '2022-11-23 23:50:21'),
+(7, '1', 'Pencatatan/Pelunasan BPHTB/PPH', NULL, 'layanan ini untuk kalangan bawah', '2022-11-23 23:51:19', '2022-11-23 23:51:19'),
+(8, '1', 'Pengangkatan Sita', NULL, 'layanan ini untuk kalangan bawah', '2022-11-23 23:51:43', '2022-11-23 23:51:43'),
+(9, '2', 'Penggabungan Bidang', NULL, 'layanan ini untuk kalangan bawah', '2022-11-23 23:52:05', '2022-11-23 23:52:05'),
+(10, '1', 'Peningkatan Kualitas PPAT sementara', NULL, 'layanan ini untuk kalangan bawah', '2022-11-23 23:52:41', '2022-11-23 23:52:41'),
+(11, '2', 'Peralihan Pihak - Hibah', 'p', 'layanan ini untuk kalangan bawah', '2022-11-23 23:53:09', '2022-11-23 23:53:09'),
+(12, 'das', 'PERALIHAN HAK - PEMASUKAN KE DALAM PERUSAHAAN ( BPNRI.ii.1 )', NULL, '-dapat diakses online oleh PPTA : Ya\r\n-dapat diakses online oleh Masyarakat : Tidak\r\n-dapat diakses online oleh Penilai Tanah : Tidak\r\n-dapat diakses online oleh Suerveyor : Tidak', '2022-11-25 00:19:06', '2022-11-25 00:22:20');
 
 -- --------------------------------------------------------
 
@@ -131,14 +132,25 @@ CREATE TABLE `pemohonans` (
 --
 
 INSERT INTO `pemohonans` (`id`, `id_permohonan`, `id_layanan`, `id_pemohon`, `id_user`, `tanggal`, `created_at`, `updated_at`) VALUES
-(5, 'ssd', NULL, '14', '1', NULL, '2022-11-24 21:32:59', '2022-11-24 21:32:59'),
-(6, 'dsd', NULL, '15', '1', NULL, '2022-11-24 23:17:55', '2022-11-24 23:17:55'),
-(7, 'sdsds', NULL, '16', '1', NULL, '2022-11-24 23:18:16', '2022-11-24 23:18:16'),
-(8, 'sds', NULL, '17', '1', NULL, '2022-11-25 00:06:21', '2022-11-25 00:06:21'),
-(9, 'adad', NULL, '18', '1', NULL, '2022-11-25 00:10:55', '2022-11-25 00:10:55'),
-(10, 'sss', NULL, '19', '1', NULL, '2022-11-25 00:12:23', '2022-11-25 00:12:23'),
-(11, 'sdsdsd', NULL, '20', '1', NULL, '2022-11-25 00:13:06', '2022-11-25 00:13:06'),
-(12, 'dsss', NULL, '21', '1', NULL, '2022-11-25 00:13:45', '2022-11-25 00:13:45');
+(185, '1', '11', '194', '1', NULL, '2022-11-29 03:06:02', '2022-11-29 03:06:02'),
+(186, '1', '11', '195', '1', NULL, '2022-11-29 03:06:55', '2022-11-29 03:06:55'),
+(187, '1', '11', '196', '1', NULL, '2022-11-29 03:07:04', '2022-11-29 03:07:04'),
+(188, '1', '11', '197', '1', NULL, '2022-11-29 03:08:36', '2022-11-29 03:08:36'),
+(189, '1', '11', '198', '1', NULL, '2022-11-29 03:09:18', '2022-11-29 03:09:18'),
+(190, '1', '11', '199', '1', NULL, '2022-11-29 03:09:28', '2022-11-29 03:09:28'),
+(191, '1', '12', '200', '1', NULL, '2022-11-29 03:10:41', '2022-11-29 03:10:41'),
+(192, '1', '12', '201', '1', NULL, '2022-11-29 03:11:38', '2022-11-29 03:11:38'),
+(193, '1', '11', '202', '1', NULL, '2022-11-29 03:12:51', '2022-11-29 03:12:51'),
+(194, '1', '11', '203', '1', NULL, '2022-11-29 03:13:10', '2022-11-29 03:13:10'),
+(195, '1', '11', '204', '1', NULL, '2022-11-29 03:14:28', '2022-11-29 03:14:28'),
+(196, '1', '11', '205', '1', NULL, '2022-11-29 03:14:42', '2022-11-29 03:14:42'),
+(197, '1', '11', '206', '1', NULL, '2022-11-29 03:18:34', '2022-11-29 03:18:34'),
+(198, '1', '12', '207', '1', NULL, '2022-11-29 03:19:11', '2022-11-29 03:19:11'),
+(199, '1', '12', '208', '1', NULL, '2022-11-29 03:19:25', '2022-11-29 03:19:25'),
+(200, '1', '12', '209', '1', NULL, '2022-11-29 03:19:35', '2022-11-29 03:19:35'),
+(201, '1', '12', '210', '1', NULL, '2022-11-29 03:19:48', '2022-11-29 03:19:48'),
+(202, '1', '12', '211', '1', NULL, '2022-11-29 03:20:11', '2022-11-29 03:20:11'),
+(203, '1', '11', '212', '1', NULL, '2022-11-29 03:21:04', '2022-11-29 03:21:04');
 
 -- --------------------------------------------------------
 
@@ -158,6 +170,31 @@ CREATE TABLE `pemohons` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `pemohons`
+--
+
+INSERT INTO `pemohons` (`id`, `nik`, `no_kk`, `nama_pemohon`, `alamat`, `no_hp`, `email`, `id_user`, `created_at`, `updated_at`) VALUES
+(194, 'sad', 'dshjhjh', 'hj', 'hjhjh', 'jhjhjhjhjh', 'jhjhjhj@jhjhj.com', 1, '2022-11-29 03:06:02', '2022-11-29 03:06:02'),
+(195, 'sad', 'dshjhjh', 'hj', 'hjhjh', 'jhjhjhjhjh', 'jhjhjhj@jhjhj.com', 1, '2022-11-29 03:06:55', '2022-11-29 03:06:55'),
+(196, 'sad', 'dshjhjh', 'hj', 'hjhjh', 'jhjhjhjhjh', 'jhjhjhj@jhjhj.com', 1, '2022-11-29 03:07:04', '2022-11-29 03:07:04'),
+(197, 'sad', 'dshjhjh', 'hj', 'hjhjh', 'jhjhjhjhjh', 'jhjhjhj@jhjhj.com', 1, '2022-11-29 03:08:36', '2022-11-29 03:08:36'),
+(198, 'sad', 'dshjhjh', 'hj', 'hjhjh', 'jhjhjhjhjh', 'jhjhjhj@jhjhj.com', 1, '2022-11-29 03:09:18', '2022-11-29 03:09:18'),
+(199, 'sad', 'dshjhjh', 'hj', 'hjhjh', 'jhjhjhjhjh', 'jhjhjhj@jhjhj.com', 1, '2022-11-29 03:09:28', '2022-11-29 03:09:28'),
+(200, 'jkk', 'jk', 'jkj', 'kj', 'kj', 'kjkkjkjkk@Jkjkjk.com', 1, '2022-11-29 03:10:41', '2022-11-29 03:10:41'),
+(201, 'jkk', 'jk', 'jkj', 'kj', 'kj', 'kjkkjkjkk@Jkjkjk.com', 1, '2022-11-29 03:11:38', '2022-11-29 03:11:38'),
+(202, 'adad', 'hjh', 'jj', 'hjh', 'jh', 'jhjh@kjkjk.com', 1, '2022-11-29 03:12:51', '2022-11-29 03:12:51'),
+(203, 'adad', 'hjh', 'jj', 'hjh', 'jh', 'jhjh@kjkjk.com', 1, '2022-11-29 03:13:10', '2022-11-29 03:13:10'),
+(204, 'adad', 'hjh', 'jj', 'hjh', 'jh', 'jhjh@kjkjk.com', 1, '2022-11-29 03:14:28', '2022-11-29 03:14:28'),
+(205, 'adad', 'hjh', 'jj', 'hjh', 'jh', 'jhjh@kjkjk.com', 1, '2022-11-29 03:14:42', '2022-11-29 03:14:42'),
+(206, 'adad', 'hjh', 'jj', 'hjh', 'jh', 'jhjh@kjkjk.com', 1, '2022-11-29 03:18:34', '2022-11-29 03:18:34'),
+(207, 'hjhjh', 'jhj', 'hjhj', 'hjhjhjhj', 'hjjjh', 'jhjhjhjh@gmaild.com', 1, '2022-11-29 03:19:11', '2022-11-29 03:19:11'),
+(208, 'hjhjh', 'jhj', 'hjhj', 'hjhjhjhj', 'hjjjh', 'jhjhjhjh@gmaild.com', 1, '2022-11-29 03:19:25', '2022-11-29 03:19:25'),
+(209, 'hjhjh', 'jhj', 'hjhj', 'hjhjhjhj', 'hjjjh', 'jhjhjhjh@gmaild.com', 1, '2022-11-29 03:19:35', '2022-11-29 03:19:35'),
+(210, 'hjhjh', 'jhj', 'hjhj', 'hjhjhjhj', 'hjjjh', 'jhjhjhjh@gmaild.com', 1, '2022-11-29 03:19:48', '2022-11-29 03:19:48'),
+(211, 'hjhjh', 'jhj', 'hjhj', 'hjhjhjhj', 'hjjjh', 'jhjhjhjh@gmaild.com', 1, '2022-11-29 03:20:11', '2022-11-29 03:20:11'),
+(212, 'jhhjhjhjj', 'hjhj', 'hjhj', 'hjhjhj', 'hjhjhj', 'hjjhjhjhh@JHjhjhjh.com', 1, '2022-11-29 03:21:04', '2022-11-29 03:21:04');
 
 -- --------------------------------------------------------
 
@@ -181,23 +218,23 @@ CREATE TABLE `persyaratan` (
 
 INSERT INTO `persyaratan` (`id`, `nama_persyaratan`, `entry_data`, `upload_data`, `status`, `created_at`, `updated_at`) VALUES
 (5, 'KTP', '1', '1', 'Wajib', '2022-11-24 00:40:32', '2022-11-24 00:40:32'),
-(6, 'Kartu Keluarga', NULL, NULL, 'Wajib', '2022-11-24 00:42:52', '2022-11-24 00:42:52'),
-(7, 'Akta Jual Beli', NULL, NULL, 'Wajib', '2022-11-24 00:43:43', '2022-11-24 00:43:43'),
-(8, 'Sertipikat Hak Atas Tanah', NULL, NULL, 'Wajib', '2022-11-25 00:30:59', '2022-11-25 00:30:59'),
-(11, 'Akta Pemasukan Modal ke Perusahaan', 'WAJIB', NULL, 'wajib', '2022-11-25 01:26:04', '2022-11-25 01:26:04'),
-(12, 'Fotocopy Pajak Bumi dan Bangunan', 'WAJIB', NULL, 'wajib', '2022-11-25 01:26:15', '2022-11-25 01:26:15'),
-(13, 'Fotocopy Bea Perolehan Hak Tanah dan Bangunan', 'WAJIB', NULL, 'wajib', '2022-11-25 01:26:32', '2022-11-25 01:26:32'),
-(14, 'Fotocopy Surat Setoran Pajak/PPH', NULL, NULL, 'wajib', '2022-11-25 01:26:43', '2022-11-25 01:26:43'),
-(15, 'Fotocopy KTP / KK', 'WAJIB', NULL, 'wajib', '2022-11-25 01:26:53', '2022-11-25 01:26:53'),
-(16, 'Surat Permohonan Keringanan Biaya', 'WAJIB', NULL, 'wajib', '2022-11-25 01:27:06', '2022-11-25 01:27:06'),
-(17, 'Surat Permohonan', 'WAJIB', NULL, 'wajib', '2022-11-25 01:27:17', '2022-11-25 01:27:17'),
-(18, 'Fotocopy KTP / Identitas Pemilik Hak', 'WAJIB', NULL, 'wajib', '2022-11-25 01:27:28', '2022-11-25 01:27:28'),
-(19, 'Surat Pengantar PPAT', 'WAJIB', NULL, 'wajib', '2022-11-25 01:27:44', '2022-11-25 01:27:44'),
-(20, 'Surat Kuasa Permohonan', 'WAJIB', NULL, 'wajib', '2022-11-25 01:28:02', '2022-11-25 01:28:02'),
-(21, 'NPWP', 'WAJIB', NULL, 'wajib', '2022-11-25 01:28:15', '2022-11-25 01:28:15'),
-(22, 'Surat Pernyataan Kepanjangan Nama', 'WAJIB', NULL, 'wajib', '2022-11-25 01:28:27', '2022-11-25 01:28:27'),
-(23, 'Surat Pernyataan dari KAKANWIL', 'WAJIB', NULL, 'wajib', '2022-11-25 01:28:38', '2022-11-25 01:28:38'),
-(24, 'Surat Pernyataan Pertanggungjawaban Mutlak Pelunasan BPHTB', 'WAJIB', NULL, 'wajib', '2022-11-25 01:28:49', '2022-11-25 01:28:49');
+(6, 'Kartu Keluarga', '1', '1', 'Wajib', '2022-11-24 00:42:52', '2022-11-24 00:42:52'),
+(7, 'Akta Jual Beli', '1', '1', 'Wajib', '2022-11-24 00:43:43', '2022-11-24 00:43:43'),
+(8, 'Sertipikat Hak Atas Tanah', '1', '1', 'Wajib', '2022-11-25 00:30:59', '2022-11-25 00:30:59'),
+(11, 'Akta Pemasukan Modal ke Perusahaan', '1', '1', 'wajib', '2022-11-25 01:26:04', '2022-11-25 01:26:04'),
+(12, 'Fotocopy Pajak Bumi dan Bangunan', '1', '1', 'wajib', '2022-11-25 01:26:15', '2022-11-25 01:26:15'),
+(13, 'Fotocopy Bea Perolehan Hak Tanah dan Bangunan', '1', '1', 'wajib', '2022-11-25 01:26:32', '2022-11-25 01:26:32'),
+(14, 'Fotocopy Surat Setoran Pajak/PPH', '1', '1', 'wajib', '2022-11-25 01:26:43', '2022-11-25 01:26:43'),
+(15, 'Fotocopy KTP / KK', '1', '1', 'wajib', '2022-11-25 01:26:53', '2022-11-25 01:26:53'),
+(16, 'Surat Permohonan Keringanan Biaya', '1', '1', 'wajib', '2022-11-25 01:27:06', '2022-11-25 01:27:06'),
+(17, 'Surat Permohonan', '1', '1', 'wajib', '2022-11-25 01:27:17', '2022-11-25 01:27:17'),
+(18, 'Fotocopy KTP / Identitas Pemilik Hak', '1', '1', 'wajib', '2022-11-25 01:27:28', '2022-11-25 01:27:28'),
+(19, 'Surat Pengantar PPAT', '1', '1', 'wajib', '2022-11-25 01:27:44', '2022-11-25 01:27:44'),
+(20, 'Surat Kuasa Permohonan', '1', '1', 'wajib', '2022-11-25 01:28:02', '2022-11-25 01:28:02'),
+(21, 'NPWP', '1', '1', 'wajib', '2022-11-25 01:28:15', '2022-11-25 01:28:15'),
+(22, 'Surat Pernyataan Kepanjangan Nama', '1', '1', 'wajib', '2022-11-25 01:28:27', '2022-11-25 01:28:27'),
+(23, 'Surat Pernyataan dari KAKANWIL', '1', '1', 'wajib', '2022-11-25 01:28:38', '2022-11-25 01:28:38'),
+(24, 'Surat Pernyataan Pertanggungjawaban Mutlak Pelunasan BPHTB', '1', '1', 'wajib', '2022-11-25 01:28:49', '2022-11-25 01:28:49');
 
 -- --------------------------------------------------------
 
@@ -219,8 +256,8 @@ CREATE TABLE `rincian_layanan` (
 --
 
 INSERT INTO `rincian_layanan` (`id`, `id_layanan`, `id_persyaratan`, `nama_layanan`, `created_at`, `updated_at`) VALUES
-(5, 11, 5, 'Peralihan Pihak - Hibah', '2022-11-24 00:44:56', '2022-11-24 00:45:20'),
-(6, 12, 8, 'PERALIHAN HAK - PEMASUKAN KE DALAM PERUSAHAAN ( BPNRI.ii.1 )', '2022-11-25 01:30:59', '2022-11-25 01:30:59'),
+(5, 11, 5, 'layanan', '2022-11-24 00:44:56', '2022-11-24 00:45:20'),
+(6, 11, 8, 'PERALIHAN HAK - PEMASUKAN KE DALAM PERUSAHAAN ( BPNRI.ii.1 )', '2022-11-25 01:30:59', '2022-11-25 01:30:59'),
 (7, 12, 11, 'PERALIHAN HAK - PEMASUKAN KE DALAM PERUSAHAAN ( BPNRI.ii.1 )', '2022-11-25 01:31:15', '2022-11-25 01:31:15'),
 (8, 12, 12, 'PERALIHAN HAK - PEMASUKAN KE DALAM PERUSAHAAN ( BPNRI.ii.1 )', '2022-11-25 01:31:46', '2022-11-25 01:31:46'),
 (9, 12, 13, 'PERALIHAN HAK - PEMASUKAN KE DALAM PERUSAHAAN ( BPNRI.ii.1 )', '2022-11-25 01:32:16', '2022-11-25 01:32:16'),
@@ -244,13 +281,21 @@ INSERT INTO `rincian_layanan` (`id`, `id_layanan`, `id_persyaratan`, `nama_layan
 
 CREATE TABLE `rincian_permohonans` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `id_permohonan` int(11) NOT NULL,
-  `id_persyaratan` int(11) NOT NULL,
-  `entry_data` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `upload_data` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id_permohonan` int(11) DEFAULT NULL,
+  `id_persyaratan` int(11) DEFAULT NULL,
+  `entry_data` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `upload_data` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `rincian_permohonans`
+--
+
+INSERT INTO `rincian_permohonans` (`id`, `id_permohonan`, `id_persyaratan`, `entry_data`, `upload_data`, `created_at`, `updated_at`) VALUES
+(458, 203, 5, 'jjhjhjhjh', 'C:\\xampp\\tmp\\php8431.tmp', '2022-11-29 03:21:04', '2022-11-29 03:21:04'),
+(459, 203, 5, 'hjhjh', 'C:\\xampp\\tmp\\php8431.tmp', '2022-11-29 03:21:04', '2022-11-29 03:21:04');
 
 -- --------------------------------------------------------
 
@@ -369,13 +414,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT untuk tabel `pemohonans`
 --
 ALTER TABLE `pemohonans`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=204;
 
 --
 -- AUTO_INCREMENT untuk tabel `pemohons`
 --
 ALTER TABLE `pemohons`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=213;
 
 --
 -- AUTO_INCREMENT untuk tabel `persyaratan`
@@ -393,7 +438,7 @@ ALTER TABLE `rincian_layanan`
 -- AUTO_INCREMENT untuk tabel `rincian_permohonans`
 --
 ALTER TABLE `rincian_permohonans`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=460;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`
